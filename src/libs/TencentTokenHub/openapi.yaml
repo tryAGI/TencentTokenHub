@@ -1,0 +1,192 @@
+openapi: 3.0.3
+info:
+  title: Tencent Cloud TokenHub API
+  version: 1.0.0
+  description: Hand-maintained OpenAPI document for Tencent Cloud TokenHub OpenAI-compatible chat completions.
+servers:
+  - url: https://tokenhub-intl.tencentcloudmaas.com/v1
+    description: International TokenHub endpoint.
+security:
+  - BearerAuth: []
+paths:
+  /chat/completions:
+    post:
+      operationId: createChatCompletion
+      tags:
+        - Chat
+      summary: Create a chat completion
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ChatCompletionRequest"
+      responses:
+        "200":
+          description: Chat completion.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ChatCompletionResponse"
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: TokenHub API key
+  schemas:
+    ChatCompletionRequest:
+      type: object
+      additionalProperties: true
+      required:
+        - model
+        - messages
+      properties:
+        model:
+          type: string
+        messages:
+          type: array
+          items:
+            $ref: "#/components/schemas/Message"
+        stream:
+          type: boolean
+        max_tokens:
+          type: integer
+        temperature:
+          type: number
+          format: float
+        top_p:
+          type: number
+          format: float
+        tools:
+          type: array
+          items:
+            $ref: "#/components/schemas/Tool"
+        tool_choice:
+          type: string
+        response_format:
+          $ref: "#/components/schemas/ResponseFormat"
+    Message:
+      type: object
+      additionalProperties: true
+      required:
+        - role
+      properties:
+        role:
+          type: string
+        content:
+          oneOf:
+            - type: string
+            - type: array
+              items:
+                $ref: "#/components/schemas/ContentPart"
+        tool_call_id:
+          type: string
+        tool_calls:
+          type: array
+          items:
+            $ref: "#/components/schemas/ToolCall"
+    ContentPart:
+      type: object
+      additionalProperties: true
+      properties:
+        type:
+          type: string
+        text:
+          type: string
+        image_url:
+          type: object
+          additionalProperties: true
+        file:
+          type: object
+          additionalProperties: true
+    Tool:
+      type: object
+      additionalProperties: true
+      properties:
+        type:
+          type: string
+        function:
+          $ref: "#/components/schemas/FunctionDefinition"
+    FunctionDefinition:
+      type: object
+      additionalProperties: true
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        parameters:
+          type: object
+          additionalProperties: true
+    ToolCall:
+      type: object
+      additionalProperties: true
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+        function:
+          $ref: "#/components/schemas/FunctionCall"
+    FunctionCall:
+      type: object
+      additionalProperties: true
+      properties:
+        name:
+          type: string
+        arguments:
+          type: string
+    ResponseFormat:
+      type: object
+      additionalProperties: true
+      properties:
+        type:
+          type: string
+    ChatCompletionResponse:
+      type: object
+      additionalProperties: true
+      properties:
+        id:
+          type: string
+        object:
+          type: string
+        created:
+          type: integer
+          format: int64
+        model:
+          type: string
+        choices:
+          type: array
+          items:
+            $ref: "#/components/schemas/Choice"
+        usage:
+          $ref: "#/components/schemas/Usage"
+    Choice:
+      type: object
+      additionalProperties: true
+      properties:
+        index:
+          type: integer
+        message:
+          $ref: "#/components/schemas/Message"
+        delta:
+          $ref: "#/components/schemas/Message"
+        finish_reason:
+          type: string
+    Usage:
+      type: object
+      additionalProperties: true
+      properties:
+        prompt_tokens:
+          type: integer
+        completion_tokens:
+          type: integer
+        total_tokens:
+          type: integer
+        prompt_tokens_details:
+          type: object
+          additionalProperties: true
+        completion_tokens_details:
+          type: object
+          additionalProperties: true

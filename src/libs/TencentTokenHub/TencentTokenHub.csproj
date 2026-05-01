@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+  </PropertyGroup>
+
+  <PropertyGroup Label="Nuget">
+    <Description>C# SDK for Tencent Cloud TokenHub OpenAI-compatible chat completion APIs.</Description>
+    <PackageTags>api;client;sdk;dotnet;openapi;tencent;tokenhub;hunyuan;llm;ai;chat-completion</PackageTags>
+  </PropertyGroup>
+
+</Project>
