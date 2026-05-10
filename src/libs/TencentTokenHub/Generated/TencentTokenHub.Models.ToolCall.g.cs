@@ -57,5 +57,6 @@ namespace TencentTokenHub
         public ToolCall()
         {
         }
+
     }
 }

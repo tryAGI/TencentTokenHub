@@ -113,5 +113,6 @@ namespace TencentTokenHub
         public ChatCompletionRequest()
         {
         }
+
     }
 }
