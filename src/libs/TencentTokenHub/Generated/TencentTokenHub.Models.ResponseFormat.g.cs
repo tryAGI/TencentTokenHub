@@ -39,5 +39,6 @@ namespace TencentTokenHub
         public ResponseFormat()
         {
         }
+
     }
 }

@@ -48,5 +48,6 @@ namespace TencentTokenHub
         public FunctionCall()
         {
         }
+
     }
 }

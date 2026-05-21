@@ -19,6 +19,18 @@ namespace TencentTokenHub
         /// <summary>
         /// Create a chat completion
         /// </summary>
+        /// <param name="request"></param>
+        /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
+        /// <param name="cancellationToken">The token to cancel the operation with</param>
+        /// <exception cref="global::TencentTokenHub.ApiException"></exception>
+        global::System.Threading.Tasks.Task<global::TencentTokenHub.AutoSDKHttpResponse<global::TencentTokenHub.ChatCompletionResponse>> CreateChatCompletionAsResponseAsync(
+
+            global::TencentTokenHub.ChatCompletionRequest request,
+            global::TencentTokenHub.AutoSDKRequestOptions? requestOptions = default,
+            global::System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Create a chat completion
+        /// </summary>
         /// <param name="model"></param>
         /// <param name="messages"></param>
         /// <param name="stream"></param>

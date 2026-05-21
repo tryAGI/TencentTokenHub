@@ -84,5 +84,6 @@ namespace TencentTokenHub
         public ChatCompletionResponse()
         {
         }
+
     }
 }

@@ -66,5 +66,6 @@ namespace TencentTokenHub
         public ContentPart()
         {
         }
+
     }
 }
