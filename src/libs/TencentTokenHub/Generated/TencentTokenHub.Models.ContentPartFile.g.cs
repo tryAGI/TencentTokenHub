@@ -4,7 +4,7 @@
 namespace TencentTokenHub
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public sealed partial class ContentPartFile
     {
